@@ -22,3 +22,36 @@ class Print
         print "|#{value}"
     end
 end
+
+class BoardManager
+    EMPTY_BOARD = ["","","","","","","","",""]
+    @@board = EMPTY_BOARD
+    def self.push_sign(sign, index)
+        if index > 9 || index < 1
+            puts "bad index, index has to be greater than 1 and smaller than 9"
+        elsif
+            @@board[index] = sign
+        end
+    end
+    def self.reset_game
+        @@board = EMPTY_BOARD
+    end
+end
+
+class GameManager
+    @sign = "O"
+    def change_sign
+        if @sign == "O"
+            @sign = "X"
+        elsif @sign == "X"
+            @sign = "O"
+        end
+    end
+    def is_wiinner(board)
+        for i in 0..2
+            if board[0+3*i] == board[1+3*i] && board[1+3*i] == board[2+3*i]
+                return true
+            end
+        end
+    end
+end
